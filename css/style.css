@@ -7,7 +7,7 @@ body{
 }
 
 .navbar-brand{
-    font-size: 28px;
+    font-size: 2px;
 }
 
 .nav-link{
@@ -88,13 +88,7 @@ body{
 
 }
 
-.hr{
-
-    color: #8DA2B8;
-}
-
-
-/* hero-Section */
+/* Hero-Section */
 
 .hero-intro{
 
@@ -504,5 +498,81 @@ body{
     background:#7DD3FC;
 
     transform:translateY(-3px);
+
+}
+
+/* Contact */
+
+.contact{
+
+    padding:100px 0;
+
+}
+
+.contact-card{
+
+    display:block;
+
+    background:#1E293B;
+
+    border-radius:20px;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    border:1px solid transparent;
+
+    height:100%;
+
+}
+
+.contact-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#38BDF8;
+
+    box-shadow:0 20px 40px rgba(56,189,248,.18);
+
+}
+
+.contact-logo{
+
+    width:65px;
+
+    height:65px;
+
+    object-fit:contain;
+
+    margin-bottom:25px;
+
+    transition:.3s;
+
+}
+
+.contact-card:hover .contact-logo{
+
+    transform:scale(1.1);
+
+}
+
+.contact-card h4{
+
+    color:#FFFFFF;
+
+    margin-bottom:12px;
+
+    font-size:24px;
+
+}
+
+.contact-card p{
+
+    color:#BCCCE0;
+
+    margin:0;
 
 }
