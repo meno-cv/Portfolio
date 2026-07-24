@@ -24,6 +24,13 @@ body{
     color: #38BDF8 !important;
 }
 
+.tech{
+
+    color: #dae0e4;
+    font-weight: bold;
+
+}
+
 
 .about{
     padding-top:100px;
@@ -430,6 +437,7 @@ body{
     padding:30px;
 
 }
+
 
 .project-content h3{
 
