@@ -16,7 +16,7 @@ if (container) {
 
                         <h4>${repo.name}</h4>
 
-                        <p>${repo.description ?? "No description available."}</p>
+                        <p>${repo.description ?? "..."}</p>
 
                         <a href="${repo.html_url}"
                            target="_blank"
