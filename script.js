@@ -2,42 +2,156 @@ const container = document.getElementById("repo-container");
 
 if (container) {
 
-    fetch("https://api.github.com/users/meno-cv/repos")
-        .then(response => response.json())
-        .then(repos => {
+    const featuredRepos = [
 
-            repos.slice(0, 6).forEach(repo => {
+        {
+            name: "Portfolio",
+            description:
+                "Responsive personal portfolio website showcasing my projects, skills, and software engineering journey."
+        },
 
-                container.innerHTML += `
+        {
+            name: "The-Golden-Grill",
+            description:
+                "Restaurant management system built with Java Swing, MySQL, and object-oriented programming."
+        },
 
-                <div class="col-lg-4">
+        {
+            name: "Guess-The-Number",
+            description:
+                "Interactive number guessing game built with HTML, CSS, and JavaScript."
+        },
 
-                    <div class="repo-card">
+        {
+            name: "Salary-Information-System",
+            description:
+                "Java application for managing employee salary information using object-oriented programming."
+        },
 
-                        <h4>${repo.name}</h4>
+        {
+            name: "Weather-APP",
+            description:
+                "Responsive weather application displaying real-time weather data using a weather API."
+        },
 
-                        <p>${repo.description ?? "..."}</p>
+        {
+            name: "Calculator---Java-Swing-Applications",
+            description:
+                "Java Swing calculator demonstrating GUI development, event handling, and OOP concepts."
+        }
 
-                        <a href="${repo.html_url}"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn project-btn">
+    ];
 
-                           View Repository
+    const repoObserver = new IntersectionObserver(
+        (entries, observer) => {
 
-                        </a>
+            entries.forEach(entry => {
 
-                    </div>
+                if (entry.isIntersecting) {
 
-                </div>
+                    entry.target.classList.add("active");
 
-                `;
+                    // Animate only once
+                    observer.unobserve(entry.target);
+
+                }
 
             });
 
-        });
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    featuredRepos.forEach((featuredRepo, index) => {
+
+        fetch(
+            `https://api.github.com/repos/meno-cv/${featuredRepo.name}`
+        )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `${featuredRepo.name} → HTTP ${response.status}`
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(repo => {
+
+                /* Create Bootstrap column */
+
+                const column = document.createElement("div");
+
+                column.className =
+                    "col-lg-4 col-md-6 repo-reveal";
+
+                column.style.transitionDelay =
+                    `${index * 0.1}s`;
+
+
+
+                column.innerHTML = `
+
+                    <article class="repo-card">
+
+                        <div class="repo-card-header">
+
+                            <h4>
+                                ${repo.name}
+                            </h4>
+
+                            <span class="repo-language">
+                                ${repo.language || "Code"}
+                            </span>
+
+                        </div>
+
+
+                        <p class="repo-description">
+                            ${featuredRepo.description}
+                        </p>
+
+
+                        <a
+                            href="${repo.html_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn project-btn"
+                        >
+                            View Repository →
+                        </a>
+
+                    </article>
+
+                `;
+
+                container.appendChild(column);
+
+                repoObserver.observe(column);
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "GitHub Repository Error:",
+                    error.message
+                );
+
+            });
+
+    });
 
 }
+
 
 
 
