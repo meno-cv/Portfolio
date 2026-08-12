@@ -682,40 +682,44 @@ body{
 
 /* ANIMATION  */
 
+/* Scroll Reveal */
+
 .reveal {
     opacity: 0;
-    transition: all 0.8s ease;
-}
-
-.reveal-up {
-    transform: translateY(50px);
-}
-
-.reveal-left {
-    transform: translateX(-50px);
-}
-
-.reveal-right {
-    transform: translateX(50px);
-}
-
-.reveal-scale {
-    transform: scale(0.9);
+    transform: translateY(40px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
 }
 
 .reveal.active {
     opacity: 1;
-    transform: translate(0) scale(1);
+    transform: translateY(0);
 }
 
-.project-card:nth-child(1) {
+
+/* Animation delays */
+
+.delay-1 {
     transition-delay: 0.1s;
 }
 
-.project-card:nth-child(2) {
+.delay-2 {
     transition-delay: 0.2s;
 }
 
-.project-card:nth-child(3) {
+.delay-3 {
     transition-delay: 0.3s;
+}
+
+.delay-4 {
+    transition-delay: 0.4s;
+}
+
+.delay-5 {
+    transition-delay: 0.5s;
+}
+
+.delay-6 {
+    transition-delay: 0.6s;
 }

@@ -43,19 +43,23 @@ if (container) {
 
 const reveals = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries, observer) => {
 
     entries.forEach(entry => {
 
         if (entry.isIntersecting) {
+
             entry.target.classList.add("active");
+
+            observer.unobserve(entry.target);
         }
 
     });
 
 }, {
-    threshold: 0.15
+    threshold: 0.2
 });
+
 
 reveals.forEach(element => {
     observer.observe(element);
